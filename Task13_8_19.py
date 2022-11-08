@@ -1,5 +1,4 @@
 bilet_n = int(input("Введите количество билетов: "))
-discount = 0.9
 total_price = 0
 try:
     for i in range(1, bilet_n + 1):
