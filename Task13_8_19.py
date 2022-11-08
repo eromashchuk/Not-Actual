@@ -1,6 +1,6 @@
-bilet_n = int(input("Введите количество билетов: "))
-total_price = 0
 try:
+    bilet_n = int(input("Введите количество билетов: "))
+    total_price = 0
     for i in range(1, bilet_n + 1):
         age = int(input(f"Введите возраст для {i} билета: "))
         if 0 <= age <= 18:
@@ -11,7 +11,8 @@ try:
             price = 1395
         total_price += price
         i = i + 1
-
+except ValueError as error:
+    print("Ошибка: Неверное значение, введите число")
 finally:
     if bilet_n > 3:
         print(f'Общая стоимость: {total_price} руб.')
