@@ -1,8 +1,8 @@
 from cat import Cat
 
-cat_male = Cat('сэм', "мальчик", 1)
-print("Имя питомца: ", cat_male.name)
-print("Пол питомца: ", cat_male.sex)
+cat_male = Cat('сэм', "мальчик", 2)
+print("Имя питомца: ", cat_male.name.upper())
+print("Пол питомца: ", cat_male.sex.upper())
 
 if cat_male.age % 10 == 1:
     print("Возраст питомца: ", cat_male.age, 'год')
