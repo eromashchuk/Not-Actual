@@ -18,7 +18,7 @@ def task_17_9_1():
     try:
         user_input = input("Введите последовательность чисел через пробел: ")
         user_num = int(input("Введите любое число: "))
-        user_list = list(map(int, user_input.split()))
+        user_list = list(set(list(map(int, user_input.split()))))
     except ValueError as error:
         print("Ошибка: Неверное значение, допустим только ввод чисел")
     finally:
