@@ -24,6 +24,7 @@
 # print(check_user('iseedeadpeople', 'greedisgood'))
 from numpy._distributor_init import filename
 
+
 # a = 15
 # if -10 <= a <= -1 or 2 <= a <= 15:
 #     print('True')
@@ -272,5 +273,352 @@ from numpy._distributor_init import filename
 #
 #     with open('to_json_example.json', encoding='utf8') as f:
 #         print(f.read())
+# from math import log
+# a = 10000 * log(10000,2)
+# b = 10000 ** 2
+# print(a)
+# print(b)
+# print(b/a)
 
-print(2 % 100)
+# def p(n):
+#     if n == 0:
+#         return f"0"
+#     else:
+#         print(n)
+#         return p(n-1)
+#
+# print(p(5))
+
+# def p(n):
+#     if n == 0:
+#         return f"0"
+#     else:
+#         p(n-1)
+#         print(n)
+#
+# print(p(5))
+
+# def par_checker(string):
+#     stack = []  # инициализируем стек
+#
+#     for s in string:  # читаем строку посимвольно
+#         if s == "(":  # если открывающая скобка,
+#             stack.append(s)  # добавляем её в стек
+#         elif s == ")":
+#             # если встретилась закрывающая скобка, то проверяем
+#             # пуст ли стек и является ли верхний элемент — открывающей скобкой
+#             if len(stack) > 0 and stack[-1] == "(":
+#                 stack.pop()  # удаляем из стека
+#             else:  # иначе завершаем функцию с False
+#                 return False
+#     # если стек пустой, то незакрытых скобок не осталось
+#     # значит, возвращаем True, иначе — False
+#     return len(stack) == 0
+# print(par_checker('(5+6)*(7+8)/(4+3)'))
+
+# pars = {")": "(", "]": "["}
+# def par_checker_mod(string):
+#     stack = []
+#
+#     for s in string:
+#         if s in "([":
+#             stack.append(s)
+#         elif s in ")]":
+#             if len(stack) > 0 and stack[-1] == pars[s]:
+#                 stack.pop()
+#             else:
+#                 return False
+#     return len(stack) == 0
+#
+# G = {"Адмиралтейская" :
+#          {"Садовая" : 4},
+#      "Садовая" :
+#          {"Сенная площадь" : 3,
+#           "Спасская" : 3,
+#           "Адмиралтейская" : 4,
+#           "Звенигородская" : 5},
+#      "Сенная площадь" :
+#          {"Садовая" : 3,
+#           "Спасская" : 3},
+#      "Спасская" :
+#          {"Садовая" : 3,
+#           "Сенная площадь" : 3,
+#           "Достоевская" : 4},
+#      "Звенигородская" :
+#          {"Пушкинская" : 3,
+#           "Садовая" : 5},
+#      "Пушкинская" :
+#          {"Звенигородская" : 3,
+#           "Владимирская" : 4},
+#      "Владимирская" :
+#          {"Достоевская" : 3,
+#           "Пушкинская" : 4},
+#      "Достоевская" :
+#          {"Владимирская" : 3,
+#           "Спасская" : 4}}
+
+# D = {k: 100 for k in G.keys()} # расстояния
+# start_k = 'Адмиралтейская' # стартовая вершина
+# D[start_k] = 0 # расстояние от неё до самой себя равно нулю
+# U = {k : False for k in G.keys()} # флаги просмотра вершин
+# P = {k : None for k in G.keys()}
+# for _ in range(len(D)):
+#     # выбираем среди непросмотренных наименьшее по расстоянию
+#     min_k = min([k for k in U.keys() if not U[k]], key=lambda x: D[x])
+#
+#     for v in G[min_k].keys(): # проходимся по всем смежным вершинам
+#          if D[v] > D[min_k] + G[min_k][v]: # если расстояние от текущей вершины меньше
+#             D[v] = D[min_k] + G[min_k][v] # то фиксируем его
+#             P[v] = min_k # и записываем как предок
+#     U[min_k] = True # просмотренную вершину помечаем
+# pointer = 'Владимирская' # куда должны прийти
+# while pointer is not None: # перемещаемся, пока не придём в стартовую точку
+#     print(pointer)
+#     pointer = P[pointer]
+# print(P)
+
+# class BinaryTree:
+#     def __init__(self, value):
+#         self.value = value
+#         self.left_child = None
+#         self.right_child = None
+#
+#
+#     def insert_left(self, next_value):
+#         if self.left_child is None:
+#             self.left_child = BinaryTree(next_value)
+#         else:
+#             new_child = BinaryTree(next_value)
+#             new_child.left_child = self.left_child
+#             self.left_child = new_child
+#         return self
+#
+#     def insert_right(self, next_value):
+#         if self.right_child is None:
+#             self.right_child = BinaryTree(next_value)
+#         else:
+#             new_child = BinaryTree(next_value)
+#             new_child.right_child = self.right_child
+#             self.right_child = new_child
+#         return self
+#
+#     def pre_order(self):
+#         print(self.value)  # процедура обработки
+#
+#         if self.left_child is not None:  # если левый потомок существует
+#             self.left_child.pre_order()  # рекурсивно вызываем функцию
+#
+#         if self.right_child is not None:  # если правый потомок существует
+#             self.right_child.pre_order()  # рекурсивно вызываем функцию
+#
+#     def post_order(self):
+#         if self.left_child is not None:  # если левый потомок существует
+#             self.left_child.post_order()  # рекурсивно вызываем функцию
+#
+#         if self.right_child is not None:  # если правый потомок существует
+#             self.right_child.post_order()  # рекурсивно вызываем функцию
+#
+#         print(self.value)  # процедура обработки
+#
+#     def in_order(self):
+#         if self.left_child is not None:  # если левый потомок существует
+#             self.left_child.in_order()  # рекурсивно вызываем функцию
+#
+#         print(self.value)  # процедура обработки
+#
+#         if self.right_child is not None:  # если правый потомок существует
+#             self.right_child.in_order()  # рекурсивно вызываем функцию
+#
+# root_node = BinaryTree(2).insert_left(7).insert_right(5)
+# l_node_7 = root_node.left_child.insert_left(2).insert_right(6)
+# l_node_6 = l_node_7.right_child.insert_left(5).insert_right(11)
+# r_node_5 = root_node.right_child.insert_right(9)
+# r_node_9 = r_node_5.right_child.insert_left(4)
+#
+# root_node.in_order()
+
+# ------
+# class Node:  # класс элемента
+#     def __init__(self, value=None, next_=None):  # инициализируем
+#         self.value = value  # значением
+#         self.next = next_  # и ссылкой на следующий элемент
+#
+#     def __str__(self):
+#         return "Node value = " + str(self.value)
+#
+#
+# class LinkedList:  # класс списка
+#     def __init__(self):  # инициализируем пустым
+#         self.first = None
+#         self.last = None
+#
+#     def clear(self):  # очищаем список
+#         self.__init__()
+#
+#     def __str__(self):  # функция печати
+#         R = ''
+#
+#         pointer = self.first  # берем первый указатель
+#         while pointer is not None:  # пока указатель не станет None
+#             R += str(pointer.value)  # добавляем значение в строку
+#             pointer = pointer.next  # идем дальше по указателю
+#             if pointer is not None:  # если он существует добавляем пробел
+#                 R += ' '
+#         return R
+#
+#     def pushleft(self, value):
+#         if self.first is None:
+#             self.first = Node(value)
+#             self.last = self.first
+#         else:
+#             new_node = Node(value, self.first)
+#             self.first = new_node
+#
+#     def pushright(self, value):
+#         if self.first is None:
+#             self.first = Node(value)
+#             self.last = self.first
+#         else:
+#             new_node = Node(value)
+#             self.last.next = new_node
+#             self.last = new_node
+#
+#     def popleft(self):
+#         if self.first is None:  # если список пустой, возвращаем None
+#             return None
+#         elif self.first == self.last:  # если список содержит только один элемент
+#             node = self.first  # сохраняем его
+#             self.__init__()  # очищаем
+#             return node  # и возвращаем сохраненный элемент
+#         else:
+#             node = self.first  # сохраняем первый элемент
+#             self.first = self.first.next  # меняем указатель на первый элемент
+#             return node  # возвращаем сохраненный
+#
+#     def popright(self):
+#         if self.first is None:  # если список пустой, возвращаем None
+#             return None
+#         elif self.first == self.last:  # если список содержит только один элемент
+#             node = self.first  # сохраняем его
+#             self.__init__()  # очищаем
+#             return node  # и возвращаем сохраненный элемент
+#         else:
+#             node = self.last  # сохраняем последний
+#             pointer = self.first  # создаем указатель
+#             while pointer.next is not node:  # пока не найдем предпоследний
+#                 pointer = pointer.next
+#             pointer.next = None  # обнуляем указатели, чтобы
+#             self.last = pointer  # предпоследний стал последним
+#             return node  # возвращаем сохраненный
+#
+#     def __iter__(self):  # объявляем класс как итератор
+#         self.current = self.first  # в текущий элемент помещаем первый
+#         return self  # возвращаем итератор
+#
+#     def __next__(self):  # метод перехода
+#         if self.current is None:  # если текущий стал последним
+#             raise StopIteration  # вызываем исключение
+#         else:
+#             node = self.current  # сохраняем текущий элемент
+#             self.current = self.current.next  # совершаем переход
+#             return node  # и возвращаем сохраненный
+#
+#     def __len__(self):
+#         count = 0
+#         pointer = self.first
+#         while pointer is not None:
+#             count += 1
+#             pointer = pointer.next
+#         return count
+# LL = LinkedList()
+#
+# LL.pushright(1)
+# LL.pushleft(2)
+# LL.pushright(3)
+# LL.popright()
+# LL.pushleft(4)
+# LL.pushright(5)
+# LL.popleft()
+#
+# print(LL.__len__())
+
+# ----------
+
+# def find(array, element):
+#     for i, a in enumerate(array):
+#         if a == element:
+#             return i
+#     return False
+#
+# array = list(map(int, input().split()))
+# element = int(input())
+#
+# print(find(array, element))
+#
+# def count(array, element):
+#     count = 0
+#     for a in array:
+#         if a == element:
+#             count += 1
+#     return count
+#
+#
+# def binary_search(array, element, left, right):
+#     if left > right:  # если левая граница превысила правую,
+#         return False  # значит элемент отсутствует
+#
+#     middle = (right + left) // 2  # находимо середину
+#     if array[middle] == element:  # если элемент в середине,
+#         return middle  # возвращаем этот индекс
+#     elif element < array[middle]:  # если элемент меньше элемента в середине
+#         # рекурсивно ищем в левой половине
+#         return binary_search(array, element, left, middle - 1)
+#     else:  # иначе в правой
+#         return binary_search(array, element, middle + 1, right)
+#
+#
+# element = int(input())
+# array = [i for i in range(1, 100)]  # 1,2,3,4,...
+#
+# # запускаем алгоритм на левой и правой границе
+# print(binary_search(array, element, 0, 99))
+
+# array = '93 326 215 443 944 152 681 699 238 856 266 700 490 715 968 264 381 621 468 592 963 895 217 599 993 229 915 608 941 463 976 156 518 286 253 697 920 827 223 758 251 185 210 916 864 000 000 000 000 000 000 000 000'
+# li = []
+# s = ""
+# for i in array:
+#     if i != " ":
+#         li.append(i)
+# print(len(s.join(li)))
+
+# array = [2, 3, 1, 4, 6, 5, 9, 8, 7]
+# n = []
+# for i in range(1, len(array)):
+#     x = array[i]
+#     idx = i
+#     while idx > 0 and array[idx-1] > x:
+#         array[idx] = array[idx-1]
+#         idx -= 1
+#     array[idx] = x
+# print(x)
+# print(idx)
+#
+# def binary_search(array, element, left, right):
+#     if left > right:  # если левая граница превысила правую,
+#         return False  # значит элемент отсутствует
+#
+#     middle = (right + left) // 2  # находимо середину
+#     if array[middle] == element:  # если элемент в середине,
+#         return middle  # возвращаем этот индекс
+#     elif element < array[middle]:  # если элемент меньше элемента в середине
+#         # рекурсивно ищем в левой половине
+#         return binary_search(array, element, left, middle - 1)
+#     else:  # иначе в правой
+#         return binary_search(array, element, middle + 1, right)
+#
+#
+# element = int(input())
+# array = [i for i in range(1, 100)]  # 1,2,3,4,...
+#
+# # запускаем алгоритм на левой и правой границе
+# print(binary_search(array, element, 0, 99))

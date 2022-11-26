@@ -17,10 +17,10 @@
 def task_17_9_1():
     try:
         user_input = input("Введите последовательность чисел через пробел: ")
-        user_num = int(input("Введите любое число: "))
+        user_num = int(input("Введите любое число в пределах диапазона: "))
         user_list = list(set(list(map(int, user_input.split()))))
-    except ValueError as error:
-        print("Ошибка: Неверное значение, допустим только ввод чисел")
+    except ValueError or IndexError as error:
+        print("Ошибка: Неверное значение, допустим только ввод чисел в пределах диопазона")
     finally:
         def sort_user_data():
             for i in range(len(user_list)):  # проходим по всему массиву
@@ -37,17 +37,21 @@ def task_17_9_1():
         r = user_list[-1]
 
         def binary_search(user_list, user_num, l, r):
-            if l > r:  # если левая граница превысила правую,
-                return False  # значит элемент отсутствует
+            try:
+                if l > r:  # если левая граница превысила правую,
+                    return False  # значит элемент отсутствует
 
-            middle = (r + l) // 2  # находимо середину
-            if user_list[middle] == user_num:  # если элемент в середине,
-                return middle  # возвращаем этот индекс
-            elif user_num < user_list[middle]:  # если элемент меньше элемента в середине
-                # рекурсивно ищем в левой половине
-                return binary_search(user_list, user_num, l, middle - 1)
-            else:  # иначе в правой
-                return binary_search(user_list, user_num, middle + 1, r)
+                middle = (r + l) // 2  # находимо середину
+                if user_list[middle] == user_num:  # если элемент в середине,
+                    return middle  # возвращаем этот индекс
+                elif user_num < user_list[middle]:  # если элемент меньше элемента в середине
+                    # рекурсивно ищем в левой половине
+                    return binary_search(user_list, user_num, l, middle - 1)
+                else:  # иначе в правой
+                    return binary_search(user_list, user_num, middle + 1, r)
+            except IndexError as error:
+                print("Ошибка: Введенное число находится за пределами диапазона")
+
 
         print(binary_search(user_list, user_num, l, r))
 
